@@ -6,11 +6,16 @@
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.0.1",
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
-    "webpack": "^5.10.1",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.10.3",
     "webpack-cli": "^4.2.0"
   },
   "scripts": {
