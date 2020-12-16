@@ -1,14 +1,3 @@
-/**
- * How to use example:
- *
- * function output(res) {
- *  console.log(res);
- *  }
- *
- * const covid = new CovidDataService().getLastDate();
- * covid.then(response => output(response));
- */
-
 export default class CovidDataService {
   constructor() {
     this.server = 'https://api.covid19api.com/';
@@ -37,16 +26,20 @@ export default class CovidDataService {
     });
   }
 
-  getLastDate() {
+  getLastDate(countryName) {
     return this.getSummary().then(response => {
       const first = 0;
-      const date = response.Countries.filter(value => value.Country === 'Russian Federation')[first]
+      const date = response.Countries.filter(value => value.Country === countryName)[first]
         .Date;
       return date;
     });
   }
 
-//   getCountryDataByName() {
-//
-//   }
+  getCountryDataByName(countryName) {
+    return this.getSummary().then(response => {
+      const first = 0;
+      const date = response.Countries.filter(value => value.Country === countryName)[first];
+      return date;
+    });
+  }
 }
