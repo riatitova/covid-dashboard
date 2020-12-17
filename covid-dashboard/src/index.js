@@ -1,8 +1,6 @@
-import Covid19Api, { createDivHtml } from './scripts/countries';
+import StatisnicsCasesCountry from './scripts/statisticsCasesCountry';
 import './css/style.scss';
 import './css/country-cases-statictics.scss';
 
-const covid19api = new Covid19Api();
-setTimeout(() => {
-  createDivHtml(covid19api);
-}, 2000);
+const statisnicsCasesCountry = new StatisnicsCasesCountry();
+statisnicsCasesCountry.getStatisticsCountryCases();
