@@ -1,0 +1,19 @@
+@use 'style';
+
+.globalCases {
+    width: 22.4rem;
+    height: 9.9rem;
+    border-radius: 5%;
+    font-size: 2.4rem;
+    font-family: 'mainFont';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: style.$field_color;
+    color: style.$font_color;
+    &__amount {
+        font-size: 3.6rem;
+        color: style.$covid_color;
+    }
+}
