@@ -1,0 +1,40 @@
+@use 'style';
+
+.statistics-list{
+    background-color: style.$field_color;
+    height: 90vh;
+    overflow: scroll;
+    padding: 1.25rem;
+    margin: 1.25rem;
+}
+.statistics-row{
+    display: grid;
+    grid-template-columns: 2.8125rem 1fr 1fr;
+    background-color: style.$text_field_color;
+    margin: 0.4rem 0;
+    height: 2.375rem;
+    align-items: center;
+    font-size: 2rem;
+}
+.statistics-row:hover{
+    cursor: pointer;
+}
+.statistics__name{
+    color: style.$font_color;
+    padding: 0 0 0 0.625rem;
+}
+.statistics__cases{
+    color: style.$covid_color;
+    text-align: right;
+    padding: 0 0.625rem 0 0;
+}
+.statistics-serch{
+    height: 1.875rem;
+    width: calc(100% - 0.3125rem);
+    margin: 0.625rem 0 0.625rem 0;
+    padding-left: 0.625rem;
+}
+.statistics__flag{
+    width: 2.5rem;
+    height: 1.6rem;
+}

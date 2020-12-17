@@ -1,6 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import createDOMElement from './createDOMElement';
 import CovidDataService from './CovidDataService';
+import CountryService from './CountryService';
 
 export default class StatisnicsCasesCountry {
   constructor() {
@@ -26,6 +27,11 @@ export default class StatisnicsCasesCountry {
         elementName: 'div', classNames: 'statistics-row', parent: this.list,
       };
       this.statisticsRow = createDOMElement(this.statisticsRow);
+      that.statisticsFlag = {
+        elementName: 'IMG', classNames: 'statistics__flag', parent: this.statisticsRow,
+      };
+      const img = createDOMElement(that.statisticsFlag);
+      this.addFlag(element.country, img);
       this.statisticsName = {
         elementName: 'div', classNames: 'statistics__name', children: `${element.country}`, parent: this.statisticsRow,
       };
@@ -44,6 +50,14 @@ export default class StatisnicsCasesCountry {
       const isContains = element.innerHTML.toLowerCase().includes(lowerCaseValue);
       parent.style.display = isContains ? 'grid' : 'none';
     });
+  }
+
+  addFlag(countryName, img) {
+    const imgNode = img;
+    this.flag = new CountryService().getFlagByName(countryName)
+      .then(response => {
+        imgNode.src = response;
+      });
   }
 
   getStatisticsCountryCases() {
