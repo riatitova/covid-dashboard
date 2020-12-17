@@ -1,0 +1,101 @@
+@use 'style';
+
+.header {
+  width: 100%;
+  background-color: style.$header_color;
+  padding: 9px 32px 0;
+  box-sizing: border-box;
+
+  &__content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-family: 'MainFont';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+    color: style.$font_color;
+  }
+
+  &__burger {
+    position: relative;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    width: 35px;
+    height: 29px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_active {
+      .line {
+        background: rgba(0, 0, 0, 0);
+
+        &::before {
+          top: 0;
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          top: 0;
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    background: style.$header_color;
+    top: 56px;
+    right: -32px;
+    height: 250px;
+    width: 200px;
+    max-width: 750px;
+    transition: transform 0.7s ease;
+    transform: translateY(-100%);
+
+    &_visible {
+      transform: translateY(0);
+    }
+  }
+}
+
+.line {
+  display: block;
+  width: 35px;
+  height: 5px;
+  background-color: style.$font_color;
+  z-index: 1;
+  transition: all 0.5s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: style.$font_color;
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+
+  &::after {
+    top: 24px;
+  }
+
+  &::before {
+    top: 0px;
+  }
+}
