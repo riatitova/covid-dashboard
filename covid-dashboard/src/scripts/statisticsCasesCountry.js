@@ -3,27 +3,29 @@ import createDOMElement from './createDOMElement';
 import CovidDataService from './CovidDataService';
 import CountryCasesRow from './countryCasesRow';
 
-export default class StatisnicsCasesCountry {
+export default class StatisnicsCasesCountries {
   constructor() {
     this.statisticsNameElements = [];
-    this.statisticsList = {
+    this.countriesList = {
       elementName: 'div',
       classNames: 'countries-list',
       parent: document.body,
     };
   }
 
-  renderStatisnicsCasesCountries(counties) {
-    this.list = createDOMElement(this.statisticsList);
+  renderStatisticsCasesCountries(countries) {
+    this.list = createDOMElement(this.countriesList);
+
     this.serchCountry = {
       elementName: 'input', classNames: 'countries-list__serch', parent: this.list,
     };
     const searchElement = createDOMElement(this.serchCountry);
     searchElement.placeholder = 'Search country';
-    const onInput = (e) => this.search(e.target.value);
+    const onInput = (event) => this.search(event.target.value);
     searchElement.addEventListener('input', onInput.bind(this));
+
     const listRow = new CountryCasesRow();
-    listRow.renderRowList(counties, this.list);
+    listRow.renderRowList(countries, this.list);
     this.statisticsNameElements = listRow.statisticsNameElements;
   }
 
@@ -37,13 +39,13 @@ export default class StatisnicsCasesCountry {
   }
 
   getStatisticsCountryCases() {
-    function fun(c) {
-      return { country: c.Country, cases: c.TotalConfirmed };
+    function mapper(entity) {
+      return { country: entity.Country, cases: entity.TotalConfirmed };
     }
     this.statistics = new CovidDataService()
       .getSummary()
-      .then(response => response.Countries.map(fun))
+      .then(response => response.Countries.map(mapper))
       .then(countries => countries.sort((start, end) => end.cases - start.cases))
-      .then(sortedCountries => this.renderStatisnicsCasesCountries(sortedCountries));
+      .then(sortedCountries => this.renderStatisticsCasesCountries(sortedCountries));
   }
 }
