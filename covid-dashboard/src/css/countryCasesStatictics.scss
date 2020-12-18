@@ -1,40 +1,49 @@
 @use 'style';
 
-.statistics-list{
+.countries-list{
     background-color: style.$field_color;
     height: 90vh;
     overflow: scroll;
-    padding: 1.25rem;
-    margin: 1.25rem;
+    padding: 2rem;
+    margin: 2rem;
 }
-.statistics-row{
-    display: grid;
-    grid-template-columns: 2.8125rem 1fr 1fr;
+.countries-list__row{
+    display: flex;
+    justify-content: space-between;
     background-color: style.$text_field_color;
-    margin: 0.4rem 0;
-    height: 2.375rem;
+    margin: 0.5rem 0;
+    height: 4.2rem;
     align-items: center;
     font-size: 2rem;
+    padding: 0 1rem;
+    transition: background-color 0.2s;
 }
-.statistics-row:hover{
+.countries-list__row_hidden{
+    display: none;
+}
+.countries-list__row:hover{
     cursor: pointer;
+    background-color: style.$text_field_color_hover;
 }
-.statistics__name{
+.wrapper{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.countries-list__name{
     color: style.$font_color;
-    padding: 0 0 0 0.625rem;
 }
-.statistics__cases{
+.countries-list__cases{
     color: style.$covid_color;
     text-align: right;
-    padding: 0 0.625rem 0 0;
 }
-.statistics-serch{
-    height: 1.875rem;
-    width: calc(100% - 0.3125rem);
-    margin: 0.625rem 0 0.625rem 0;
-    padding-left: 0.625rem;
+.countries-list__serch{
+    height: 2.5rem;
+    width: calc(100% - 1rem);
+    margin: 1rem 0 1rem 0;
+    padding-left: 1rem;
 }
-.statistics__flag{
-    width: 2.5rem;
-    height: 1.6rem;
+.countries-list__flag{
+    width: 3rem;
+    height: 2rem;
 }
