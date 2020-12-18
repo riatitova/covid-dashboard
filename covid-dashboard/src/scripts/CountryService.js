@@ -12,10 +12,10 @@ export default class CountryService {
   }
 
   getFlagByName(name) {
-    // const first = 0;
+    const first = 0;
     return this.getData().then(
       response => {
-        const country = response.filter(value => value.name === name)[0];
+        const country = response.filter(value => value.name === name)[first];
         return country !== undefined ? country.flag : '';
       },
     );

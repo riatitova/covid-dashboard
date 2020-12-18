@@ -1,5 +1,6 @@
 import createDOMElement from './createDOMElement';
 import CountryService from './CountryService';
+import '../css/countryCasesStatictics.scss';
 
 export default class CountryCasesRow {
   constructor() {
@@ -25,29 +26,29 @@ export default class CountryCasesRow {
 
   createRowWrapper() {
     this.wrapper = {
-      elementName: 'div', classNames: 'countries-list__row__wrapper', parent: this.rowElement,
+      elementName: 'div', classNames: 'countries-list__wrapper', parent: this.rowElement,
     };
     this.wrapperElement = createDOMElement(this.wrapper);
   }
 
   createFlag(element) {
-    this.statisticsFlag = {
-      elementName: 'IMG', classNames: 'countries-list__row__wrapper__flag', parent: this.wrapperElement,
+    this.countryFlag = {
+      elementName: 'IMG', classNames: 'countries-list__flag', parent: this.wrapperElement,
     };
-    const img = createDOMElement(this.statisticsFlag);
+    const img = createDOMElement(this.countryFlag);
     this.addFlag(element.country, img);
   }
 
   createNameCountry(element) {
-    this.statisticsName = {
-      elementName: 'div', classNames: 'countries-list__row__wrapper__name', children: element.country, parent: this.wrapperElement,
+    this.countryName = {
+      elementName: 'div', classNames: 'countries-list__name', children: element.country, parent: this.wrapperElement,
     };
-    this.statisticsNameElements.push(createDOMElement(this.statisticsName));
+    this.statisticsNameElements.push(createDOMElement(this.countryName));
   }
 
   createCasesCountry(element) {
     this.statisticsCases = {
-      elementName: 'div', classNames: 'countries-list__row__cases', children: element.cases.toString(), parent: this.rowElement,
+      elementName: 'div', classNames: 'countries-list__cases', children: element.cases.toString(), parent: this.rowElement,
     };
     createDOMElement(this.statisticsCases);
   }

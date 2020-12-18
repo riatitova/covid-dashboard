@@ -1,9 +1,9 @@
-/* eslint-disable import/no-unresolved */
 import createDOMElement from './createDOMElement';
-import CovidDataService from './CovidDataService';
+import CovidDataService from './covidDataService';
 import CountryCasesRow from './countryCasesRow';
+import '../css/countryCasesStatictics.scss';
 
-export default class StatisnicsCasesCountries {
+export default class StatisticsCasesCountries {
   constructor() {
     this.statisticsNameElements = [];
     this.countriesList = {
@@ -16,10 +16,10 @@ export default class StatisnicsCasesCountries {
   renderStatisticsCasesCountries(countries) {
     this.list = createDOMElement(this.countriesList);
 
-    this.serchCountry = {
-      elementName: 'input', classNames: 'countries-list__serch', parent: this.list,
+    this.searchCountry = {
+      elementName: 'input', classNames: 'countries-list__search', parent: this.list,
     };
-    const searchElement = createDOMElement(this.serchCountry);
+    const searchElement = createDOMElement(this.searchCountry);
     searchElement.placeholder = 'Search country';
     const onInput = (event) => this.search(event.target.value);
     searchElement.addEventListener('input', onInput.bind(this));
