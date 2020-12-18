@@ -14,7 +14,10 @@ export default class CountryService {
   getFlagByName(name) {
     const first = 0;
     return this.getData().then(
-      response => response.filter(value => value.name === name)[first].flag,
+      response => {
+        const country = response.filter(value => value.name === name)[first];
+        return country !== undefined ? country.flag : '';
+      },
     );
   }
 
