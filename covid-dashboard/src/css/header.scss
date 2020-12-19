@@ -6,14 +6,6 @@
   padding: 0.9rem 3.2rem 0;
   box-sizing: border-box;
 
-  &__content {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
   &__title {
     margin: 0;
     padding: 0;
@@ -23,51 +15,6 @@
     font-size: 4.8rem;
     line-height: 5.6rem;
     color: style.$font_color;
-  }
-
-  &__burger {
-    position: relative;
-    display: flex;
-    z-index: 1;
-    align-items: center;
-    width: 3.5rem;
-    height: 2.9rem;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &_active {
-      .line {
-        background: rgba(0, 0, 0, 0);
-
-        &::before {
-          top: 0;
-          transform: rotate(45deg);
-        }
-
-        &::after {
-          top: 0;
-          transform: rotate(135deg);
-        }
-      }
-    }
-  }
-
-  &__menu {
-    position: absolute;
-    background: style.$header_color;
-    top: 5.6rem;
-    right: -3.2rem;
-    height: 25rem;
-    width: 20rem;
-    max-width: 75rem;
-    transition: transform 0.7s ease;
-    transform: translateY(-100%);
-
-    &_visible {
-      transform: translateY(0);
-    }
   }
 }
 
