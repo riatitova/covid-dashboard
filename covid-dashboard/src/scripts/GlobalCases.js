@@ -1,20 +1,20 @@
 import createDOMElement from './createDOMElement';
-import CovidDataService from './CovidDataService';
 import '../css/globalCases.scss';
 
 export default class GlobalCases {
-  constructor() {
+  constructor(covidResponse) {
+    this.covidResponse = covidResponse;
     this.globalCases = {
       elementName: 'div',
       classNames: 'globalCases',
-      children: 'globalCases',
+      children: 'Global cases',
       parent: document.body,
     };
   }
 
-  renderGlobalCases(promise) {
+  renderGlobalCases(response) {
     this.globalCases = createDOMElement(this.globalCases);
-    this.currentCases = promise;
+    this.currentCases = response;
     const cases = {
       elementName: 'span',
       classNames: 'globalCases__amount',
@@ -25,9 +25,8 @@ export default class GlobalCases {
   }
 
   getGlobalCases() {
-    this.cases = new CovidDataService()
-      .getSummaryGlobal()
-      .then(response => this.renderGlobalCases(response.TotalConfirmed));
+    const response = this.covidResponse.getSummaryGlobal().NewConfirmed;
+    this.renderGlobalCases(response);
     return this.cases;
   }
 }

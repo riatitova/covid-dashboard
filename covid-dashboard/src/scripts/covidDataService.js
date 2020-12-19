@@ -1,45 +1,30 @@
 export default class CovidDataService {
-  constructor() {
-    this.server = 'https://api.covid19api.com/';
-    this.requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
+  set covidDataResponse(data) {
+    this.covidData = data;
   }
 
-  async getData(url) {
-    this.res = await fetch(url, this.requestOptions);
-    if (this.res.ok) {
-      return this.res.json();
-    }
-    throw new Error(`Не удалось получить данные по адресу ${url}`);
-  }
-
-  getSummary() {
-    return this.getData(`${this.server}summary`);
+  get summary() {
+    return this.covidData;
   }
 
   getSummaryGlobal() {
-    return this.getSummary().then(response => {
-      const global = response.Global;
-      return global;
-    });
+    return this.covidData.Global;
   }
 
-  getLastDate(countryName) {
-    return this.getSummary().then(response => {
-      const first = 0;
-      const date = response.Countries.filter(value => value.Country === countryName)[first]
-        .Date;
-      return date;
-    });
+  getLastDate() {
+    return this.covidData.Date;
+  }
+
+  getCountriesNames() {
+    const countriesNames = this.covidData.Countries.map(value => value.Country);
+    return countriesNames;
   }
 
   getCountryDataByName(countryName) {
-    return this.getSummary().then(response => {
-      const first = 0;
-      const date = response.Countries.filter(value => value.Country === countryName)[first];
-      return date;
-    });
+    const first = 0;
+    const countryData = this.covidData.Countries.filter(value => value.Country === countryName)[
+      first
+    ];
+    return countryData;
   }
 }
