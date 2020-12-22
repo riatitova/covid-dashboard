@@ -1,32 +1,14 @@
 import createDOMElement from './createDOMElement';
-import CovidDataService from './covidDataService';
-import CountryCasesRow from './countryCasesRow';
+import CountryLists from './countryCasesRow';
+import CountryDataSwitch from './DataSwitch';
 import '../css/countryCasesStatictics.scss';
 
-export default class StatisticsCasesCountries {
+export default class StatisticsCountries {
   constructor() {
     this.statisticsNameElements = [];
     this.countriesList = {
-      elementName: 'div',
-      classNames: 'countries-list',
-      parent: document.body,
+      elementName: 'div', classNames: 'list', parent: document.body,
     };
-  }
-
-  renderStatisticsCasesCountries(countries) {
-    this.list = createDOMElement(this.countriesList);
-
-    this.searchCountry = {
-      elementName: 'input', classNames: 'countries-list__search', parent: this.list,
-    };
-    const searchElement = createDOMElement(this.searchCountry);
-    searchElement.placeholder = 'Search country';
-    const onInput = (event) => this.search(event.target.value);
-    searchElement.addEventListener('input', onInput.bind(this));
-
-    const listRow = new CountryCasesRow();
-    listRow.renderRowList(countries, this.list);
-    this.statisticsNameElements = listRow.statisticsNameElements;
   }
 
   search(value) {
@@ -38,14 +20,25 @@ export default class StatisticsCasesCountries {
     });
   }
 
-  getStatisticsCountryCases() {
-    function mapper(entity) {
-      return { country: entity.Country, cases: entity.TotalConfirmed };
-    }
-    this.statistics = new CovidDataService()
-      .getSummary()
-      .then(response => response.Countries.map(mapper))
-      .then(countries => countries.sort((start, end) => end.cases - start.cases))
-      .then(sortedCountries => this.renderStatisticsCasesCountries(sortedCountries));
+  renderCovidStatisticsLists() {
+    this.list = createDOMElement(this.countriesList);
+
+    this.searchCountry = {
+      elementName: 'input', classNames: 'list__search', parent: this.list,
+    };
+
+    const searchElement = createDOMElement(this.searchCountry);
+    searchElement.placeholder = 'Search country';
+    const onInput = (event) => this.search(event.target.value);
+    searchElement.addEventListener('input', onInput.bind(this));
+
+    const listRow = new CountryLists();
+    listRow.countriesDataService = this.countriesDataService;
+    listRow.covidDataService = this.covidDataService;
+    listRow.renderLists(this.list);
+    this.statisticsNameElements = listRow.statisticsNameElements;
+
+    const countryDataSwitch = new CountryDataSwitch(listRow.arrCountriesListElement);
+    countryDataSwitch.renderDataSwitch(this.list);
   }
 }

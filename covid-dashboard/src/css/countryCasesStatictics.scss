@@ -1,9 +1,8 @@
 @use 'style';
 
-.countries-list{
+.list{
     background-color: style.$field_color;
     height: 90vh;
-    overflow: scroll;
     padding: 2rem;
     margin: 2rem;
     &__search{
@@ -12,6 +11,8 @@
         margin: 1rem 0 1rem 0;
         padding-left: 1rem;
     }   
+}
+.countries-list{
     &__row{
         display: flex;
         justify-content: space-between;
@@ -30,9 +31,15 @@
             background-color: style.$text_field_color_hover;
         }
     }
+
     &__cases{
-        color: style.$covid_color;
-        text-align: right;
+        color: rgb(209, 209, 209);
+    }
+    &__deaths{
+        color: rgb(255, 0, 0);
+    }
+    &__recovered{
+        color: palegreen;
     }
     &__name{
         color: style.$font_color;
@@ -41,11 +48,14 @@
         width: 3rem;
         height: 2rem;
     }
-    &__wrapper{
+    &__wrapper-country{
         display: flex;
         align-items: center;
         gap: 1rem;
     }
-    
-    
+    &__wrapper-cases{
+        display: flex;
+        gap: 2rem;
+    }
 }
+    

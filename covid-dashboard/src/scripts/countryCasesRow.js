@@ -1,19 +1,69 @@
 import createDOMElement from './createDOMElement';
-import CountryService from './CountryService';
 import '../css/countryCasesStatictics.scss';
+import '../css/statisticsList.scss';
 
-export default class CountryCasesRow {
+export default class CountryLists {
   constructor() {
+    this.globalCases = {
+      className: 'countries-list__cases', data: 'TotalConfirmed', parentClassName: 'global__cases',
+    };
+    this.globalDeaths = {
+      className: 'countries-list__deaths', data: 'TotalDeaths', parentClassName: 'global__deaths',
+    };
+    this.globalRecovered = {
+      className: 'countries-list__recovered', data: 'TotalRecovered', parentClassName: 'global__recovered',
+    };
+    this.lastDayCases = {
+      className: 'countries-list__cases', data: 'NewConfirmed', parentClassName: 'last__cases',
+    };
+    this.lastDayDeaths = {
+      className: 'countries-list__deaths', data: 'NewDeaths', parentClassName: 'last__deaths',
+    };
+    this.lastDayRecovered = {
+      className: 'countries-list__recovered', data: 'NewRecovered', parentClassName: 'last__recovered',
+    };
     this.statisticsNameElements = [];
+    this.arrCountriesListElement = [];
   }
 
-  renderRowList(countries, parentNode) {
+  renderLists(parentNode) {
+    const countries = this.covidDataService.summary.Countries;
+    // global
+    countries.sort((start, end) => end.TotalConfirmed - start.TotalConfirmed);
+    this.renderList(countries, parentNode, this.globalCases);
+
+    countries.sort((start, end) => end.TotalDeaths - start.TotalDeaths);
+    this.renderList(countries, parentNode, this.globalDeaths);
+
+    countries.sort((start, end) => end.TotalRecovered - start.TotalRecovered);
+    this.renderList(countries, parentNode, this.globalRecovered);
+
+    // last day
+    countries.sort((start, end) => end.NewConfirmed - start.NewConfirmed);
+    this.renderList(countries, parentNode, this.lastDayCases);
+
+    countries.sort((start, end) => end.NewDeaths - start.NewDeaths);
+    this.renderList(countries, parentNode, this.lastDayDeaths);
+
+    countries.sort((start, end) => end.NewRecovered - start.NewRecovered);
+    this.renderList(countries, parentNode, this.lastDayRecovered);
+
+    // per 100k
+  }
+
+  // className: 'countries-list__cases', data: 'TotalConfirmed', parentClassName: 'global__cases',
+  renderList(countries, parentNode, meta) {
+    this.wrapperCountriesList = {
+      elementName: 'div', classNames: meta.parentClassName, parent: parentNode,
+    };
+    this.arrCountriesListElement.push(createDOMElement(this.wrapperCountriesList));
     countries.forEach((element) => {
-      this.createRow(parentNode);
+      this.createRow(this.arrCountriesListElement[this.arrCountriesListElement.length - 1]);
       this.createRowWrapper();
+      this.createCasesWrapper();
       this.createFlag(element);
       this.createNameCountry(element);
-      this.createCasesCountry(element);
+      this.createCountryCovidInfo(meta.className, element[meta.data].toString());
     });
   }
 
@@ -24,11 +74,18 @@ export default class CountryCasesRow {
     this.rowElement = createDOMElement(this.rowList);
   }
 
-  createRowWrapper() {
-    this.wrapper = {
-      elementName: 'div', classNames: 'countries-list__wrapper', parent: this.rowElement,
+  createCasesWrapper() {
+    this.wrapperCases = {
+      elementName: 'div', classNames: 'countries-list__wrapper-cases', parent: this.rowElement,
     };
-    this.wrapperElement = createDOMElement(this.wrapper);
+    this.wrapperCasesElement = createDOMElement(this.wrapperCases);
+  }
+
+  createRowWrapper() {
+    this.wrapperCountry = {
+      elementName: 'div', classNames: 'countries-list__wrapper-country', parent: this.rowElement,
+    };
+    this.wrapperElement = createDOMElement(this.wrapperCountry);
   }
 
   createFlag(element) {
@@ -36,28 +93,26 @@ export default class CountryCasesRow {
       elementName: 'IMG', classNames: 'countries-list__flag', parent: this.wrapperElement,
     };
     const img = createDOMElement(this.countryFlag);
-    this.addFlag(element.country, img);
+    this.addFlag(element.Country, img);
   }
 
   createNameCountry(element) {
     this.countryName = {
-      elementName: 'div', classNames: 'countries-list__name', children: element.country, parent: this.wrapperElement,
+      elementName: 'div', classNames: 'countries-list__name', children: element.Country, parent: this.wrapperElement,
     };
     this.statisticsNameElements.push(createDOMElement(this.countryName));
   }
 
-  createCasesCountry(element) {
-    this.statisticsCases = {
-      elementName: 'div', classNames: 'countries-list__cases', children: element.cases.toString(), parent: this.rowElement,
-    };
-    createDOMElement(this.statisticsCases);
-  }
-
   addFlag(countryName, img) {
     const imgNode = img;
-    this.flag = new CountryService().getFlagByName(countryName)
-      .then(response => {
-        imgNode.src = response;
-      });
+    this.flag = this.countriesDataService.getFlagByName(countryName);
+    imgNode.src = this.flag;
+  }
+
+  createCountryCovidInfo(className, covidInfo) {
+    this.CovidInfo = {
+      elementName: 'div', classNames: className, children: covidInfo, parent: this.wrapperCasesElement,
+    };
+    createDOMElement(this.CovidInfo);
   }
 }
