@@ -3,6 +3,7 @@ import CovidDataService from './scripts/CovidDataService';
 import Loader from './scripts/Loader';
 import App from './scripts/App';
 import CountryService from './scripts/CountryService';
+import 'normalize.css';
 
 const countryDataService = new CountryService();
 const covidDataService = new CovidDataService();

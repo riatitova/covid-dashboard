@@ -1,6 +1,6 @@
 import createDOMElement from './createDOMElement';
 import DataSwitch from './dataSwitch';
-import GlobalData from './GlobalCases';
+import GlobalData from './GlobalData';
 import Header from './header/header';
 import '../css/mainContent.scss';
 

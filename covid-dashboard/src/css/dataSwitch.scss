@@ -12,6 +12,6 @@
         border-radius: 0.7rem;
     }
     &__button{
-        @include style.button()
+        @include style.button();
     }
 }
