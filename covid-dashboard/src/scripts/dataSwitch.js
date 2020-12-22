@@ -26,7 +26,7 @@ export default class DataSwitch {
 
   createSwitchData(parentNode) {
     this.wrapperDataSwitch = {
-      elementName: 'div', classNames: 'data-switch__wrapper', children: null, parent: parentNode,
+      elementName: 'div', classNames: 'data-switch__wrapper', parent: parentNode,
     };
     this.wrapperDataSwitchElement = createDOMElement(this.wrapperDataSwitch);
   }

@@ -12,19 +12,6 @@
         border-radius: 0.7rem;
     }
     &__button{
-        display: flex;
-        align-items: center;
-        color: style.$font_color;
-        font-size: 1.5rem;
-        border: black solid 0.1rem;
-        height: 2.5rem;
-        border-radius: 1rem;
-        padding: 0 0.5rem;
-        transition: background-color 0.3s;
-    }
-    &__button:hover{
-        color: white;
-        cursor: pointer;
-        background-color: style.$text_field_color_hover;
+        @include style.button()
     }
 }

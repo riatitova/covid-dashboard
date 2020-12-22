@@ -1,30 +1,34 @@
 import createDOMElement from './createDOMElement';
 import DataSwitch from './dataSwitch';
-import GlobalCases from './GlobalCases';
+import GlobalData from './GlobalCases';
+import Header from './header/header';
 import '../css/mainContent.scss';
 
 export default class MainContent {
+  constructor(countriesData, covidData) {
+    this.countriesDataService = countriesData;
+    this.covidDataService = covidData;
+  }
+
   renderMainPage() {
     this.createMainPage();
-    this.createHeader();
+
+    const header = new Header(this.mainPageElement);
+    header.renderHeader();
 
     const dataSwitch = new DataSwitch();
     dataSwitch.renderDataSwitch(this.mainPageElement);
 
     this.cratePageContent();
     this.createFooter();
-
     this.createWrapperLeft();
 
-    // this.createGlobalData();
-    const globalCases = new GlobalCases(this.wrapperLeftElement);
-    globalCases.renderGlobalCases();
+    const globalCases = new GlobalData(this.covidDataService, this.wrapperLeftElement);
+    globalCases.renderGlobalData();
 
     this.createList();
-
     this.createWrapperRight();
     this.createMap();
-
     this.createWrapper();
     this.createTable();
     this.createChart();
@@ -35,13 +39,6 @@ export default class MainContent {
       elementName: 'div', classNames: 'main-page', parent: document.body,
     };
     this.mainPageElement = createDOMElement(this.mainPage);
-  }
-
-  createHeader() {
-    this.header = {
-      elementName: 'header', classNames: 'header', parent: this.mainPageElement,
-    };
-    this.headerElement = createDOMElement(this.header);
   }
 
   createFooter() {
@@ -60,16 +57,9 @@ export default class MainContent {
 
   createWrapperLeft() {
     this.wrapperLeft = {
-      elementName: 'div', classNames: 'page-content__wrapper_left', parent: this.pageContentElement,
+      elementName: 'div', classNames: 'page-content__wrapper-left', parent: this.pageContentElement,
     };
     this.wrapperLeftElement = createDOMElement(this.wrapperLeft);
-  }
-
-  createGlobalData() {
-    this.globalData = {
-      elementName: 'div', classNames: 'page-content__global-data', parent: this.wrapperLeftElement,
-    };
-    this.globalDataElement = createDOMElement(this.globalData);
   }
 
   createList() {
@@ -81,7 +71,7 @@ export default class MainContent {
 
   createWrapperRight() {
     this.wrapperRight = {
-      elementName: 'div', classNames: 'page-content__wrapper_right', parent: this.pageContentElement,
+      elementName: 'div', classNames: 'page-content__wrapper-right', parent: this.pageContentElement,
     };
     this.wrapperRightElement = createDOMElement(this.wrapperRight);
   }

@@ -8,7 +8,7 @@ export default class App {
 
   init() {
     this.covidAllCases = this.covidDataService.summary;
-    const mainPage = new MainContent();
+    const mainPage = new MainContent(this.countriesDataService, this.covidDataService);
     mainPage.renderMainPage();
   }
 }

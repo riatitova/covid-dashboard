@@ -1,5 +1,6 @@
 import createDOMElement from '../createDOMElement';
 import Burger from './Burger';
+import '../../css/headerContent.scss';
 
 export default class HeaderContent {
   constructor(parent) {

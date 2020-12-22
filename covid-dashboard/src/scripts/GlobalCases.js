@@ -1,7 +1,7 @@
 import createDOMElement from './createDOMElement';
 import '../css/globalCases.scss';
 
-export default class GlobalCases {
+export default class GlobalData {
   constructor(covidResponse, parentNode) {
     this.covidResponse = covidResponse;
     this.globalCases = {
@@ -12,7 +12,7 @@ export default class GlobalCases {
     };
   }
 
-  renderGlobalCases(response) {
+  renderGlobalData(response) {
     this.globalCases = createDOMElement(this.globalCases);
     this.currentCases = response;
     const cases = {
@@ -24,9 +24,9 @@ export default class GlobalCases {
     this.amountOfCases = createDOMElement(cases);
   }
 
-  getGlobalCases() {
+  getGlobalData() {
     const response = this.covidResponse.getSummaryGlobal().NewConfirmed;
-    this.renderGlobalCases(response);
+    this.renderGlobalData(response);
     return this.cases;
   }
 }

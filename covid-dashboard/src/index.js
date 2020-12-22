@@ -13,5 +13,6 @@ source$.subscribe(results => {
   const [covidData, countryData] = results;
   covidDataService.covidDataResponse = covidData;
   countryDataService.countriesDataResponse = countryData;
-  const app = new App(countryDataService, covidDataService).init();
+  const app = new App(countryDataService, covidDataService);
+  app.init();
 });
