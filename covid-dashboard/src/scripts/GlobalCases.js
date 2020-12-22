@@ -2,13 +2,13 @@ import createDOMElement from './createDOMElement';
 import '../css/globalCases.scss';
 
 export default class GlobalCases {
-  constructor(covidResponse) {
+  constructor(covidResponse, parentNode) {
     this.covidResponse = covidResponse;
     this.globalCases = {
       elementName: 'div',
       classNames: 'globalCases',
       children: 'Global cases',
-      parent: document.body,
+      parent: parentNode,
     };
   }
 
