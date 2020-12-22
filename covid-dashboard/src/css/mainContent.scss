@@ -34,7 +34,7 @@
     }
 }
 
-@media(max-width: 1106px){
+@media(max-width: style.$display_medium){
     .page-content{
         grid-template-columns: 1fr;
         height: 175rem;
@@ -44,7 +44,7 @@
         grid-template-rows: 6.5rem 8rem calc(200rem - 19.5rem) 5rem;
     }
 }
-@media(max-width: 602px){
+@media(max-width: style.$display_small){
     .main-page{
         height: 200rem;
         grid-template-rows: 6.5rem 11rem calc(200rem - 21.5rem) 5rem;

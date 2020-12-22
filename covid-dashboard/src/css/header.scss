@@ -17,7 +17,12 @@
     color: style.$font_color;
     transition: font-size 1s;
   }
-  @media(max-width: 700px){
+  @media(max-width: style.$display_medium){
+    &__title{
+      font-size: 3.5rem;
+    }
+  }
+  @media(max-width: style.$display_small){
     &__title{
       font-size: 2.5rem;
     }
