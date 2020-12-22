@@ -1,0 +1,30 @@
+@use 'style';
+.data-switch{
+    &__wrapper{
+        margin: 2rem 2rem 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        background-color: style.$field_color;
+        column-gap: 1rem;
+        align-items: center;
+        padding: 0 1rem;
+        border-radius: 0.7rem;
+    }
+    &__button{
+        display: flex;
+        align-items: center;
+        color: style.$font_color;
+        font-size: 1.5rem;
+        border: black solid 0.1rem;
+        height: 2.5rem;
+        border-radius: 1rem;
+        padding: 0 0.5rem;
+        transition: background-color 0.3s;
+    }
+    &__button:hover{
+        color: white;
+        cursor: pointer;
+        background-color: style.$text_field_color_hover;
+    }
+}

@@ -6,6 +6,7 @@ $field_color: #121623;
 $text_field_color: #1E253A;
 $text_field_color_hover: #2F354D;
 $recovered_color: #688D4B;
+$border_color: #333B53;
 
 @font-face {
   font-family: 'mainFont';
@@ -19,4 +20,7 @@ $recovered_color: #688D4B;
 
 :root {
   font-size: 10px;
+}
+body{
+  margin: 0;
 }
