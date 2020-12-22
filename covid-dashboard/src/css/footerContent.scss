@@ -1,0 +1,16 @@
+@use 'style';
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: style.$font_color;
+  font-family: 'MainFont';
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+
+.footer__left {
+  display: flex;
+  align-items: center;
+}
