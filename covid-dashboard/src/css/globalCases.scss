@@ -1,9 +1,9 @@
 @use 'style';
 
 .globalCases {
-    width: 22.4rem;
-    height: 9.9rem;
     border-radius: 5%;
+    margin: 1rem;
+    border: solid 0.1rem style.$border_color;
     font-size: 2.4rem;
     font-family: 'mainFont';
     display: flex;

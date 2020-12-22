@@ -1,5 +1,6 @@
 import createDOMElement from '../createDOMElement';
 import Menu from './Menu';
+import '../../css/burger.scss';
 
 export default class Burger {
   constructor(parent) {

@@ -3,6 +3,7 @@ import CovidDataService from './scripts/CovidDataService';
 import Loader from './scripts/Loader';
 import App from './scripts/App';
 import CountryService from './scripts/CountryService';
+import 'normalize.css';
 
 const countryDataService = new CountryService();
 const covidDataService = new CovidDataService();
@@ -13,5 +14,6 @@ source$.subscribe(results => {
   const [covidData, countryData] = results;
   covidDataService.covidDataResponse = covidData;
   countryDataService.countriesDataResponse = countryData;
-  const app = new App(countryDataService, covidDataService).init();
+  const app = new App(countryDataService, covidDataService);
+  app.init();
 });

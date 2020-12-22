@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "rxjs": "^6.6.3"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import createDOMElement from '../createDOMElement';
+import '../../css/menu.scss';
 
 export default class Menu {
   constructor(parent) {
