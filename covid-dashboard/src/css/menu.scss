@@ -1,0 +1,17 @@
+@use 'style';
+
+.header__menu {
+  position: absolute;
+  background: style.$header_color;
+  top: 5.6rem;
+  right: -3.2rem;
+  height: 25rem;
+  width: 20rem;
+  max-width: 75rem;
+  transition: transform 0.7s ease;
+  transform: translateY(-100%);
+
+  &_visible {
+    transform: translateY(0);
+  }
+}

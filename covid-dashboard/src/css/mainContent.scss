@@ -1,0 +1,52 @@
+@use 'style';
+
+.main-page{
+    display: grid;
+    grid-template-rows: 6.5rem 6rem calc(100vh - 17.5rem) 5rem;
+    background-color: style.$bacground_color;
+    height: 100vh;
+}
+.footer{
+    background-color: style.$header_color;
+}
+.page-content{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 1rem;
+
+    &__wrapper-left{
+        display: grid;
+        grid-template-rows: 25% 75%;
+    }    
+    &__wrapper-right{
+        display: grid;
+        grid-template-rows: 65% 35%;
+    }
+    &__wrapper{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    &__list, &__map, &__table, &__chart{
+        background-color: style.$field_color;
+        margin: 1rem;
+        border: solid 0.1rem style.$border_color;
+        border-radius: 0.7rem;
+    }
+}
+
+@media(max-width: style.$display_medium){
+    .page-content{
+        grid-template-columns: 1fr;
+        height: 175rem;
+    }
+    .main-page{
+        height: 200rem;
+        grid-template-rows: 6.5rem 8rem calc(200rem - 19.5rem) 5rem;
+    }
+}
+@media(max-width: style.$display_small){
+    .main-page{
+        height: 200rem;
+        grid-template-rows: 6.5rem 11rem calc(200rem - 21.5rem) 5rem;
+    }
+}

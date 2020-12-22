@@ -6,6 +6,27 @@ $field_color: #121623;
 $text_field_color: #1E253A;
 $text_field_color_hover: #2F354D;
 $recovered_color: #688D4B;
+$border_color: #333B53;
+
+$display_medium: 1106px;
+$display_small: 602px;
+
+@mixin button(){
+  display: flex;
+  align-items: center;
+  color: $font_color;
+  font-size: 1.5rem;
+  border: black solid 0.1rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  padding: 0 0.5rem;
+  transition: background-color 0.3s;
+  &:hover{
+    color: white;
+    cursor: pointer;
+    background-color: $text_field_color_hover;
+  }
+}
 
 @font-face {
   font-family: 'mainFont';
