@@ -19,7 +19,7 @@ export default class DataSwitch {
       { childrenContent: 'Per 100k deaths', value: 'TotalConfirmed', className: 'countries-list__deaths' },
       { childrenContent: 'Per 100k recovered', value: 'TotalConfirmed', className: 'countries-list__recovered' },
     ];
-    this.arrSwitchButton = [];
+    this.switchButtons = [];
   }
 
   renderDataSwitch(parentNode) {
@@ -44,19 +44,19 @@ export default class DataSwitch {
     this.switchButtonElement = createDOMElement(this.switchButton);
     this.switchButtonElement.setAttribute('value', buttonInfo.value);
     this.switchButtonElement.setAttribute('name', buttonInfo.className);
-    this.arrSwitchButton.push(this.switchButtonElement);
+    this.switchButtons.push(this.switchButtonElement);
   }
 
   setEventListeners() {
-    this.arrSwitchButton.forEach((element) => {
-      element.addEventListener('click', (e) => {
-        console.log(e.target.textContent);
+    this.wrapperDataSwitchElement.addEventListener('click', event => {
+      const attribute = event.target.getAttribute('value');
+      if (attribute !== null) {
         const contriesList = new CountryLists(this.statistic.list);
         contriesList.countriesDataService = this.countriesDataService;
         contriesList.covidDataService = this.covidDataService;
-        contriesList.renderCountriesList(e.target.getAttribute('value'), e.target.getAttribute('name'));
+        contriesList.renderCountriesList(event.target.getAttribute('value'), event.target.getAttribute('name'));
         this.statistic.statisticsNameElements = contriesList.statisticsNameElements;
-      });
+      }
     });
   }
 }

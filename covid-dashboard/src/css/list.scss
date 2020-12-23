@@ -1,17 +1,24 @@
 @use 'style';
 
-.countries-list{
+.list{
     background-color: style.$field_color;
-    height: 90vh;
-    overflow: scroll;
-    padding: 2rem;
-    margin: 2rem;
+    margin: 1rem;
+    border: solid 0.1rem style.$border_color;
+    border-radius: 0.7rem;
+    overflow: hidden;
+    height: calc(100vh - 38.5rem);
     &__search{
         height: 2.5rem;
-        width: calc(100% - 1rem);
-        margin: 1rem 0 1rem 0;
+        width: calc(100% - 5rem);
+        margin: 1rem;
         padding-left: 1rem;
+        font-size: 1.5rem;
     }   
+}
+.countries-list{
+    height: calc(100vh - 46rem);
+    overflow: scroll;
+    margin: 1rem;
     &__row{
         display: flex;
         justify-content: space-between;
@@ -30,9 +37,15 @@
             background-color: style.$text_field_color_hover;
         }
     }
+
     &__cases{
+        color: style.$font_color;
+    }
+    &__deaths{
         color: style.$covid_color;
-        text-align: right;
+    }
+    &__recovered{
+        color: style.$recovered_color;
     }
     &__name{
         color: style.$font_color;
@@ -41,11 +54,15 @@
         width: 3rem;
         height: 2rem;
     }
-    &__wrapper{
+    &__wrapper-country{
         display: flex;
         align-items: center;
         gap: 1rem;
     }
-    
-    
+    &__wrapper-cases{
+        display: flex;
+        gap: 2rem;
+        color: style.$font_color;
+    }
 }
+    
