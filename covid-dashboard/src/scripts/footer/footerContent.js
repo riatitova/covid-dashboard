@@ -1,6 +1,7 @@
 import createDOMElement from '../createDOMElement';
 import FooterLinks from './footerLinks';
 import logo from '../../assets/img/rs_school_js.svg';
+import '../../css/footerContent.scss';
 
 export default class FooterContent {
   constructor(parent) {

@@ -22,9 +22,9 @@ export default class CovidDataService {
 
   getCountryDataByName(countryName) {
     const first = 0;
-    const countryData = this.covidData.Countries.filter(value => value.Country === countryName)[
-      first
-    ];
+    const countryData = this.covidData.Countries.filter(
+      value => value.Country.includes(countryName),
+    )[first];
     return countryData;
   }
 }

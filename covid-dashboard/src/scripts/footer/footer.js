@@ -1,5 +1,6 @@
 import createDOMElement from '../createDOMElement';
 import FooterContent from './footerContent';
+import '../../css/footer.scss';
 
 export default class Footer {
   constructor(parent) {
@@ -7,8 +8,7 @@ export default class Footer {
     this.data = {
       elementName: 'footer',
       classNames: 'footer',
-      children: null,
-      parent: document.body,
+      parent: this.parent,
     };
   }
 
@@ -17,6 +17,3 @@ export default class Footer {
     this.footerContent = new FooterContent(this.footerElement);
   }
 }
-
-const footer = new Footer();
-footer.renderFooter();

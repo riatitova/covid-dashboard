@@ -1,4 +1,5 @@
 import createDOMElement from '../createDOMElement';
+import '../../css/footerLinks.scss';
 
 export default class FooterLinks {
   constructor(parent) {
