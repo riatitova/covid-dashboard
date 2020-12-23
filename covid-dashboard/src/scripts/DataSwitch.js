@@ -14,12 +14,12 @@ export default class DataSwitch {
       { childrenContent: 'Last day cases', value: 'NewConfirmed', className: 'countries-list__cases' },
       { childrenContent: 'Last day deaths', value: 'NewDeaths', className: 'countries-list__deaths' },
       { childrenContent: 'Last day recovered', value: 'NewRecovered', className: 'countries-list__recovered' },
-      // пока что заглушки стоят TotalConfirmed
+
       { childrenContent: 'Per 100k cases', value: 'TotalConfirmed', className: 'countries-list__cases' },
       { childrenContent: 'Per 100k deaths', value: 'TotalConfirmed', className: 'countries-list__deaths' },
       { childrenContent: 'Per 100k recovered', value: 'TotalConfirmed', className: 'countries-list__recovered' },
     ];
-    this.switchButtons = [];
+    this.arrSwitchButton = [];
   }
 
   renderDataSwitch(parentNode) {
@@ -44,19 +44,18 @@ export default class DataSwitch {
     this.switchButtonElement = createDOMElement(this.switchButton);
     this.switchButtonElement.setAttribute('value', buttonInfo.value);
     this.switchButtonElement.setAttribute('name', buttonInfo.className);
-    this.switchButtons.push(this.switchButtonElement);
+    this.arrSwitchButton.push(this.switchButtonElement);
   }
 
   setEventListeners() {
-    this.wrapperDataSwitchElement.addEventListener('click', event => {
-      const attribute = event.target.getAttribute('value');
-      if (attribute !== null) {
+    this.arrSwitchButton.forEach(element => {
+      element.addEventListener('click', event => {
         const contriesList = new CountryLists(this.statistic.list);
         contriesList.countriesDataService = this.countriesDataService;
         contriesList.covidDataService = this.covidDataService;
         contriesList.renderCountriesList(event.target.getAttribute('value'), event.target.getAttribute('name'));
         this.statistic.statisticsNameElements = contriesList.statisticsNameElements;
-      }
+      });
     });
   }
 }
