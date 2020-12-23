@@ -30,7 +30,7 @@ export default class List {
 
     const searchElement = createDOMElement(this.searchCountry);
     searchElement.placeholder = 'Search country';
-    const onInput = (event) => this.search(event.target.value);
+    const onInput = event => this.search(event.target.value);
     searchElement.addEventListener('input', onInput.bind(this));
 
     const countriesList = new CountryLists(this.list);

@@ -24,7 +24,7 @@ export default class CountryLists {
     this.countriesList = {
       elementName: 'div', classNames: 'countries-list', parent: this.list,
     };
-    this.countriesListEl = createDOMElement(this.countriesList);
+    this.countriesListElement = createDOMElement(this.countriesList);
 
     countries.forEach((element) => {
       this.createRow();
@@ -32,13 +32,13 @@ export default class CountryLists {
       this.createCasesWrapper();
       this.createData(className, element[data]);
       this.createFlag(element);
-      this.createNameCountry(element);
+      this.createCountryName(element);
     });
   }
 
   createRow() {
     this.rowList = {
-      elementName: 'div', classNames: 'countries-list__row', parent: this.countriesListEl,
+      elementName: 'div', classNames: 'countries-list__row', parent: this.countriesListElement,
     };
     this.rowElement = createDOMElement(this.rowList);
   }
@@ -72,7 +72,7 @@ export default class CountryLists {
     this.addFlag(element.Country, img);
   }
 
-  createNameCountry(element) {
+  createCountryName(element) {
     this.countryName = {
       elementName: 'div', classNames: 'countries-list__name', children: element.Country, parent: this.wrapperElement,
     };
