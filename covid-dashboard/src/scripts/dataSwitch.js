@@ -1,8 +1,12 @@
 import createDOMElement from './createDOMElement';
+import CountryLists from './CountriesList';
 import '../css/dataSwitch.scss';
 
 export default class DataSwitch {
-  constructor() {
+  constructor(covidDataService, countriesDataService) {
+    this.covidDataService = covidDataService;
+    this.countriesDataService = countriesDataService;
+
     this.listButtons = [
       'Global cases',
       'Global deaths',
@@ -36,5 +40,13 @@ export default class DataSwitch {
       elementName: 'div', classNames: 'data-switch__button', children: childrenContent, parent: this.wrapperDataSwitchElement,
     };
     this.switchButtonElement = createDOMElement(this.switchButton);
+    this.switchButtonElement.addEventListener('click', (e) => {
+      console.log(e.target.textContent);
+      const contriesList = new CountryLists();
+      contriesList.countriesDataService = this.countriesDataService;
+      contriesList.covidDataService = this.covidDataService;
+      contriesList.renderLists('TotalConfirmed');
+      // contriesList.renderLists(e.target.textContent);
+    });
   }
 }

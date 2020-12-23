@@ -2,12 +2,14 @@
 
 .main-page{
     display: grid;
-    grid-template-rows: 6.5rem 6rem calc(100vh - 17.5rem) 5rem;
+    grid-template-rows: 6.5rem 8rem calc(100vh - 19.5rem) 5rem;
     background-color: style.$bacground_color;
-    height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
 }
 .footer{
     background-color: style.$header_color;
+    z-index: 2;
 }
 .page-content{
     display: grid;
@@ -16,7 +18,7 @@
 
     &__wrapper-left{
         display: grid;
-        grid-template-rows: 25% 75%;
+        grid-template-rows:  15rem calc(100% - 15rem);
     }    
     &__wrapper-right{
         display: grid;
@@ -38,10 +40,6 @@
     .page-content{
         grid-template-columns: 1fr;
         height: 175rem;
-    }
-    .main-page{
-        height: 200rem;
-        grid-template-rows: 6.5rem 8rem calc(200rem - 19.5rem) 5rem;
     }
 }
 @media(max-width: style.$display_small){

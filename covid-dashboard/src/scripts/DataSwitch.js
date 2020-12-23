@@ -1,34 +1,52 @@
 import createDOMElement from './createDOMElement';
+import CountryLists from './CountriesList';
 import '../css/dataSwitch.scss';
 
-export default class CountryDataSwitch {
-  constructor(arrCountriesListElement) {
-    this.arrCountriesListElement = arrCountriesListElement;
+export default class DataSwitch {
+  constructor(covidDataService, countriesDataService) {
+    this.covidDataService = covidDataService;
+    this.countriesDataService = countriesDataService;
+
+    this.listButtons = [
+      'Global cases',
+      'Global deaths',
+      'Global recovered',
+      'Last day cases',
+      'Last day deaths',
+      'Last day recovered',
+      'Per 100k cases',
+      'Per 100k deaths',
+      'Per 100k recovered',
+    ];
   }
 
   renderDataSwitch(parentNode) {
-    this.createSelectData(parentNode);
-    this.createSelectDataType(parentNode);
+    this.createSwitchData(parentNode);
 
-    this.createOption(this.selectDataElement, 'Cases', 'cases');
-    this.createOption(this.selectDataElement, 'Deaths', 'deaths');
-    this.createOption(this.selectDataElement, 'Recovered', 'recovered');
-
-    this.createOption(this.selectDataTypeElement, 'Global', 'global');
-    this.createOption(this.selectDataTypeElement, 'Last day', 'last');
-    this.createOption(this.selectDataTypeElement, 'Per 100k', 'per');
+    this.listButtons.forEach(element => {
+      this.createSwitchButton(element);
+    });
   }
 
-  createButton(parentNode, childrenName, value) {
-    this.option = {
-      elementName: 'div', classNames: 'button__data', children: childrenName, parent: parentNode,
+  createSwitchData(parentNode) {
+    this.wrapperDataSwitch = {
+      elementName: 'div', classNames: 'data-switch__wrapper', parent: parentNode,
     };
-    this.optionCasesElement = createDOMElement(this.option);
-    this.optionCasesElement.value = value;
+    this.wrapperDataSwitchElement = createDOMElement(this.wrapperDataSwitch);
   }
 
-  showList() {
-    console.log(this.selectDataElement.value);
-    console.log(this.arrCountriesListElement);
+  createSwitchButton(childrenContent) {
+    this.switchButton = {
+      elementName: 'div', classNames: 'data-switch__button', children: childrenContent, parent: this.wrapperDataSwitchElement,
+    };
+    this.switchButtonElement = createDOMElement(this.switchButton);
+    this.switchButtonElement.addEventListener('click', (e) => {
+      console.log(e.target.textContent);
+      const contriesList = new CountryLists();
+      contriesList.countriesDataService = this.countriesDataService;
+      contriesList.covidDataService = this.covidDataService;
+      contriesList.renderLists('TotalConfirmed');
+      // contriesList.renderLists(e.target.textContent);
+    });
   }
 }

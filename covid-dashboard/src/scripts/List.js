@@ -1,14 +1,15 @@
 import createDOMElement from './createDOMElement';
-import CountryLists from './countryCasesRow';
-import CountryDataSwitch from './DataSwitch';
-import '../css/countryCasesStatictics.scss';
+import CountryLists from './CountriesList';
+import '../css/list.scss';
 
 export default class StatisticsCountries {
-  constructor() {
+  constructor(parentNode, covidDataService, countriesDataService) {
     this.statisticsNameElements = [];
     this.countriesList = {
-      elementName: 'div', classNames: 'list', parent: document.body,
+      elementName: 'div', classNames: 'list', parent: parentNode,
     };
+    this.covidDataService = covidDataService;
+    this.countriesDataService = countriesDataService;
   }
 
   search(value) {
@@ -20,7 +21,7 @@ export default class StatisticsCountries {
     });
   }
 
-  renderCovidStatisticsLists() {
+  renderList() {
     this.list = createDOMElement(this.countriesList);
 
     this.searchCountry = {
@@ -32,13 +33,10 @@ export default class StatisticsCountries {
     const onInput = (event) => this.search(event.target.value);
     searchElement.addEventListener('input', onInput.bind(this));
 
-    const listRow = new CountryLists();
-    listRow.countriesDataService = this.countriesDataService;
-    listRow.covidDataService = this.covidDataService;
-    listRow.renderLists(this.list);
-    this.statisticsNameElements = listRow.statisticsNameElements;
-
-    const countryDataSwitch = new CountryDataSwitch(listRow.arrCountriesListElement);
-    countryDataSwitch.renderDataSwitch(this.list);
+    const countriesList = new CountryLists(this.list);
+    countriesList.countriesDataService = this.countriesDataService;
+    countriesList.covidDataService = this.covidDataService;
+    countriesList.renderCountriesList('TotalConfirmed');
+    this.statisticsNameElements = countriesList.statisticsNameElements;
   }
 }
