@@ -24,7 +24,7 @@ export default class MainContent {
     this.createFooter();
 
     const globalCases = new GlobalData(this.covidDataService, this.wrapperLeftElement);
-    globalCases.renderGlobalData();
+    globalCases.getGlobalData();
 
     // this.createList();
     const statisticsCountries = new StatisticsCountries(this.wrapperLeftElement, this.covidDataService, this.countriesDataService);
