@@ -1,7 +1,7 @@
 import createDOMElement from './createDOMElement';
 import DataSwitch from './dataSwitch';
 import GlobalData from './GlobalData';
-import StatisticsCountries from './List';
+import List from './List';
 import Header from './header/header';
 import '../css/mainContent.scss';
 
@@ -25,11 +25,12 @@ export default class MainContent {
 
     const globalCases = new GlobalData(this.covidDataService, this.wrapperLeftElement);
     globalCases.getGlobalData();
-
-    // this.createList();
-    const statisticsCountries = new StatisticsCountries(this.wrapperLeftElement, this.covidDataService, this.countriesDataService);
-    statisticsCountries.renderList();
-    dataSwitch.paren = statisticsCountries;
+    const list = new List(this.wrapperLeftElement,
+      this.covidDataService,
+      this.countriesDataService);
+    list.renderList();
+    dataSwitch.statistic = list;
+    dataSwitch.setEventListeners();
 
     this.createWrapperRight();
     this.createMap();
@@ -65,13 +66,6 @@ export default class MainContent {
     };
     this.wrapperLeftElement = createDOMElement(this.wrapperLeft);
   }
-
-  // createList() {
-  //   this.list = {
-  //     elementName: 'div', classNames: 'page-content__list', parent: this.wrapperLeftElement,
-  //   };
-  //   this.listElement = createDOMElement(this.list);
-  // }
 
   createWrapperRight() {
     this.wrapperRight = {

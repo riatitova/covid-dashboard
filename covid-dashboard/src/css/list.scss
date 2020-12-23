@@ -39,13 +39,13 @@
     }
 
     &__cases{
-        color: rgb(209, 209, 209);
+        color: style.$font_color;
     }
     &__deaths{
-        color: rgb(255, 0, 0);
+        color: style.$covid_color;
     }
     &__recovered{
-        color: palegreen;
+        color: style.$recovered_color;
     }
     &__name{
         color: style.$font_color;
@@ -62,6 +62,7 @@
     &__wrapper-cases{
         display: flex;
         gap: 2rem;
+        color: style.$font_color;
     }
 }
     

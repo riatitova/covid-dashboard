@@ -4,31 +4,33 @@ import '../css/list.scss';
 export default class CountryLists {
   constructor(parentNode) {
     this.statisticsNameElements = [];
-    this.arrCountriesListElement = [];
     this.list = parentNode;
   }
 
-  renderCountriesList(data) {
-    this.countriesList = '';
+  renderCountriesList(data, className) {
     this.statisticsNameElements = [];
-    this.arrCountriesListElement = [];
+    const childrenNodes = this.list.children;
+    for (let i = 0; i < childrenNodes.length; i += 1) {
+      if (childrenNodes[i].classList.contains('countries-list')) {
+        childrenNodes[i].remove();
+      }
+    }
     const countries = this.covidDataService.summary.Countries;
     countries.sort((start, end) => end[data] - start[data]);
-    this.createCountriesList(data, countries);
+    this.createCountriesList(data, countries, className);
   }
 
-  createCountriesList(data, countries) {
+  createCountriesList(data, countries, className) {
     this.countriesList = {
       elementName: 'div', classNames: 'countries-list', parent: this.list,
     };
     this.countriesListEl = createDOMElement(this.countriesList);
-    this.arrCountriesListElement.push(this.countriesList);
 
     countries.forEach((element) => {
       this.createRow();
       this.createRowWrapper();
       this.createCasesWrapper();
-      this.createData('countries-list__deaths', element[data]);
+      this.createData(className, element[data]);
       this.createFlag(element);
       this.createNameCountry(element);
     });

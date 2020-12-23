@@ -2,7 +2,7 @@ import createDOMElement from './createDOMElement';
 import CountryLists from './CountriesList';
 import '../css/list.scss';
 
-export default class StatisticsCountries {
+export default class List {
   constructor(parentNode, covidDataService, countriesDataService) {
     this.statisticsNameElements = [];
     this.countriesList = {

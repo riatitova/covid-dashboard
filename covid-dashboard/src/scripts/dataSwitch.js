@@ -8,16 +8,18 @@ export default class DataSwitch {
     this.countriesDataService = countriesDataService;
 
     this.listButtons = [
-      'Global cases',
-      'Global deaths',
-      'Global recovered',
-      'Last day cases',
-      'Last day deaths',
-      'Last day recovered',
-      'Per 100k cases',
-      'Per 100k deaths',
-      'Per 100k recovered',
+      { childrenContent: 'Global cases', value: 'TotalConfirmed', className: 'countries-list__cases' },
+      { childrenContent: 'Global deaths', value: 'TotalDeaths', className: 'countries-list__deaths' },
+      { childrenContent: 'Global recovered', value: 'TotalRecovered', className: 'countries-list__recovered' },
+      { childrenContent: 'Last day cases', value: 'NewConfirmed', className: 'countries-list__cases' },
+      { childrenContent: 'Last day deaths', value: 'NewDeaths', className: 'countries-list__deaths' },
+      { childrenContent: 'Last day recovered', value: 'NewRecovered', className: 'countries-list__recovered' },
+      // пока что заглушки стоят TotalConfirmed
+      { childrenContent: 'Per 100k cases', value: 'TotalConfirmed', className: 'countries-list__cases' },
+      { childrenContent: 'Per 100k deaths', value: 'TotalConfirmed', className: 'countries-list__deaths' },
+      { childrenContent: 'Per 100k recovered', value: 'TotalConfirmed', className: 'countries-list__recovered' },
     ];
+    this.arrSwitchButton = [];
   }
 
   renderDataSwitch(parentNode) {
@@ -35,18 +37,26 @@ export default class DataSwitch {
     this.wrapperDataSwitchElement = createDOMElement(this.wrapperDataSwitch);
   }
 
-  createSwitchButton(childrenContent) {
+  createSwitchButton(buttonInfo) {
     this.switchButton = {
-      elementName: 'div', classNames: 'data-switch__button', children: childrenContent, parent: this.wrapperDataSwitchElement,
+      elementName: 'div', classNames: 'data-switch__button', children: buttonInfo.childrenContent, parent: this.wrapperDataSwitchElement,
     };
     this.switchButtonElement = createDOMElement(this.switchButton);
-    this.switchButtonElement.addEventListener('click', (e) => {
-      console.log(e.target.textContent);
-      const contriesList = new CountryLists();
-      contriesList.countriesDataService = this.countriesDataService;
-      contriesList.covidDataService = this.covidDataService;
-      contriesList.renderLists('TotalConfirmed');
-      // contriesList.renderLists(e.target.textContent);
+    this.switchButtonElement.setAttribute('value', buttonInfo.value);
+    this.switchButtonElement.setAttribute('name', buttonInfo.className);
+    this.arrSwitchButton.push(this.switchButtonElement);
+  }
+
+  setEventListeners() {
+    this.arrSwitchButton.forEach((element) => {
+      element.addEventListener('click', (e) => {
+        console.log(e.target.textContent);
+        const contriesList = new CountryLists(this.statistic.list);
+        contriesList.countriesDataService = this.countriesDataService;
+        contriesList.covidDataService = this.covidDataService;
+        contriesList.renderCountriesList(e.target.getAttribute('value'), e.target.getAttribute('name'));
+        this.statistic.statisticsNameElements = contriesList.statisticsNameElements;
+      });
     });
   }
 }
