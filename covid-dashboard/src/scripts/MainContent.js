@@ -24,7 +24,7 @@ export default class MainContent {
     this.createWrapperLeft();
 
     const globalCases = new GlobalData(this.covidDataService, this.wrapperLeftElement);
-    globalCases.renderGlobalData();
+    globalCases.getGlobalData();
 
     this.createList();
     this.createWrapperRight();
