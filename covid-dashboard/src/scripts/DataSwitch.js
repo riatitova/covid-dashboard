@@ -48,13 +48,13 @@ export default class DataSwitch {
   }
 
   setEventListeners() {
-    this.wrapperDataSwitchElement.addEventListener('click', e => {
-      const attribute = e.target.getAttribute('value');
+    this.wrapperDataSwitchElement.addEventListener('click', event => {
+      const attribute = event.target.getAttribute('value');
       if (attribute !== null) {
         const contriesList = new CountryLists(this.statistic.list);
         contriesList.countriesDataService = this.countriesDataService;
         contriesList.covidDataService = this.covidDataService;
-        contriesList.renderCountriesList(e.target.getAttribute('value'), e.target.getAttribute('name'));
+        contriesList.renderCountriesList(event.target.getAttribute('value'), event.target.getAttribute('name'));
         this.statistic.statisticsNameElements = contriesList.statisticsNameElements;
       }
     });
