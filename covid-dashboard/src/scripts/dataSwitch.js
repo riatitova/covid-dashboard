@@ -14,7 +14,7 @@ export default class DataSwitch {
       { childrenContent: 'Last day cases', value: 'NewConfirmed', className: 'countries-list__cases' },
       { childrenContent: 'Last day deaths', value: 'NewDeaths', className: 'countries-list__deaths' },
       { childrenContent: 'Last day recovered', value: 'NewRecovered', className: 'countries-list__recovered' },
-      // пока что заглушки стоят TotalConfirmed
+
       { childrenContent: 'Per 100k cases', value: 'TotalConfirmed', className: 'countries-list__cases' },
       { childrenContent: 'Per 100k deaths', value: 'TotalConfirmed', className: 'countries-list__deaths' },
       { childrenContent: 'Per 100k recovered', value: 'TotalConfirmed', className: 'countries-list__recovered' },
@@ -48,13 +48,12 @@ export default class DataSwitch {
   }
 
   setEventListeners() {
-    this.arrSwitchButton.forEach((element) => {
-      element.addEventListener('click', (e) => {
-        console.log(e.target.textContent);
+    this.arrSwitchButton.forEach(element => {
+      element.addEventListener('click', event => {
         const contriesList = new CountryLists(this.statistic.list);
         contriesList.countriesDataService = this.countriesDataService;
         contriesList.covidDataService = this.covidDataService;
-        contriesList.renderCountriesList(e.target.getAttribute('value'), e.target.getAttribute('name'));
+        contriesList.renderCountriesList(event.target.getAttribute('value'), event.target.getAttribute('name'));
         this.statistic.statisticsNameElements = contriesList.statisticsNameElements;
       });
     });

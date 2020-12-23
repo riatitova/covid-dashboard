@@ -1,5 +1,5 @@
 import createDOMElement from './createDOMElement';
-import DataSwitch from './dataSwitch';
+import DataSwitch from './DataSwitch';
 import GlobalData from './GlobalData';
 import List from './List';
 import Header from './header/header';
@@ -52,13 +52,6 @@ export default class MainContent {
       elementName: 'div', classNames: 'main-page', parent: document.body,
     };
     this.mainPageElement = createDOMElement(this.mainPage);
-  }
-
-  createFooter() {
-    this.footer = {
-      elementName: 'footer', classNames: 'footer', parent: this.mainPageElement,
-    };
-    this.footerElement = createDOMElement(this.footer);
   }
 
   cratePageContent() {

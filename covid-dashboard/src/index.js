@@ -1,5 +1,5 @@
 import { combineLatest } from 'rxjs';
-import CovidDataService from './scripts/CovidDataService';
+import CovidDataService from './scripts/СovidDataService';
 import Loader from './scripts/Loader';
 import App from './scripts/App';
 import CountryService from './scripts/CountryService';
