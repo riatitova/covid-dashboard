@@ -2,6 +2,8 @@ import createDOMElement from './createDOMElement';
 import DataSwitch from './dataSwitch';
 import GlobalData from './GlobalData';
 import Header from './header/header';
+import Footer from './footer/footer';
+import Map from './Map';
 import '../css/mainContent.scss';
 
 export default class MainContent {
@@ -20,7 +22,10 @@ export default class MainContent {
     dataSwitch.renderDataSwitch(this.mainPageElement);
 
     this.cratePageContent();
-    this.createFooter();
+
+    const footer = new Footer(this.mainPageElement);
+    footer.renderFooter();
+
     this.createWrapperLeft();
 
     const globalCases = new GlobalData(this.covidDataService, this.wrapperLeftElement);
@@ -28,7 +33,10 @@ export default class MainContent {
 
     this.createList();
     this.createWrapperRight();
-    this.createMap();
+
+    const map = new Map(this.covidDataService, this.wrapperRightElement);
+    map.renderMap();
+
     this.createWrapper();
     this.createTable();
     this.createChart();
@@ -74,13 +82,6 @@ export default class MainContent {
       elementName: 'div', classNames: 'page-content__wrapper-right', parent: this.pageContentElement,
     };
     this.wrapperRightElement = createDOMElement(this.wrapperRight);
-  }
-
-  createMap() {
-    this.map = {
-      elementName: 'div', classNames: 'page-content__map', parent: this.wrapperRightElement,
-    };
-    this.mapElement = createDOMElement(this.map);
   }
 
   createWrapper() {
