@@ -1,5 +1,6 @@
 import createDOMElement from './createDOMElement';
 import CountryLists from './CountriesList';
+import FullScreenButton from './FullScreenButton';
 import '../css/list.scss';
 
 export default class List {
@@ -23,6 +24,8 @@ export default class List {
 
   renderList() {
     this.list = createDOMElement(this.countriesList);
+    const fullScreenButton = new FullScreenButton(this.list, 'list');
+    fullScreenButton.createFullScreenButton();
 
     this.searchCountry = {
       elementName: 'input', classNames: 'list__search', parent: this.list,
