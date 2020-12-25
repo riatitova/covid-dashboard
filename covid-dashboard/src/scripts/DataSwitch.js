@@ -15,10 +15,11 @@ export default class DataSwitch {
       { childrenContent: 'Last day deaths', value: 'NewDeaths', className: 'countries-list__deaths' },
       { childrenContent: 'Last day recovered', value: 'NewRecovered', className: 'countries-list__recovered' },
 
-      { childrenContent: 'Per 100k cases', value: 'TotalConfirmed', className: 'countries-list__cases' },
-      { childrenContent: 'Per 100k deaths', value: 'TotalConfirmed', className: 'countries-list__deaths' },
-      { childrenContent: 'Per 100k recovered', value: 'TotalConfirmed', className: 'countries-list__recovered' },
+      { childrenContent: 'Per 100k cases', value: 'TotalConfirmedPer100', className: 'countries-list__cases' },
+      { childrenContent: 'Per 100k deaths', value: 'TotalDeathsPer100', className: 'countries-list__deaths' },
+      { childrenContent: 'Per 100k recovered', value: 'TotalRecoveredPer100', className: 'countries-list__recovered' },
     ];
+
     this.arrSwitchButton = [];
   }
 

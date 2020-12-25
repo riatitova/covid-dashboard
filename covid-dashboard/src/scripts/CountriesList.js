@@ -16,6 +16,14 @@ export default class CountryLists {
       }
     }
     const countries = this.covidDataService.summary.Countries;
+    if (data.endsWith('Per100')) {
+      const newData = data.replace('Per100', '');
+      for (let i = 0; i < countries.length; i += 1) {
+        const total = countries[i][newData];
+        this.population = this.countriesDataService.getPopulationByCode(countries[i].CountryCode);
+        countries[i][data] = this.population === '' ? '0.00' : ((total / this.population) * 100000).toFixed(2);
+      }
+    }
     countries.sort((start, end) => end[data] - start[data]);
     this.createCountriesList(data, countries, className);
   }
@@ -69,7 +77,7 @@ export default class CountryLists {
       elementName: 'IMG', classNames: 'countries-list__flag', parent: this.wrapperElement,
     };
     const img = createDOMElement(this.countryFlag);
-    this.addFlag(element.Country, img);
+    this.addFlag(element.CountryCode, img);
   }
 
   createCountryName(element) {
@@ -79,9 +87,9 @@ export default class CountryLists {
     this.statisticsNameElements.push(createDOMElement(this.countryName));
   }
 
-  addFlag(countryName, img) {
+  addFlag(countryCode, img) {
     const imgNode = img;
-    this.flag = this.countriesDataService.getFlagByName(countryName);
+    this.flag = this.countriesDataService.getFlagByCode(countryCode);
     imgNode.src = this.flag;
   }
 }
