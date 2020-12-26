@@ -5,6 +5,7 @@ import List from './List';
 import Header from './header/header';
 import Footer from './footer/footer';
 import Map from './Map';
+import Table from './Table';
 import '../css/mainContent.scss';
 
 export default class MainContent {
@@ -43,7 +44,9 @@ export default class MainContent {
     map.renderMap();
 
     this.createWrapper();
-    this.createTable();
+    // this.createTable();
+    const table = new Table(this.wrapperElement);
+    table.renderTable();
     this.createChart();
   }
 
