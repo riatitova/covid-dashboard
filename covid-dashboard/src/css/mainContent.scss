@@ -6,10 +6,6 @@
     background-color: style.$bacground_color;
     height: 100vh;
 }
-.footer{
-    background-color: style.$header_color;
-    z-index: 2;
-}
 .page-content{
     display: grid;
     grid-template-columns: 30% 70%;
@@ -27,7 +23,7 @@
         display: grid;
         grid-template-columns: 50% 50%;
     }
-    &__list, &__map, &__table, &__chart{
+    &__map, &__chart{
         background-color: style.$field_color;
         margin: 1rem;
         border: solid 0.1rem style.$border_color;

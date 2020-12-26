@@ -20,8 +20,9 @@ export default class CountryLists {
       const newData = data.replace('Per100', '');
       for (let i = 0; i < countries.length; i += 1) {
         const total = countries[i][newData];
+        const dataPer100k = ((total / this.population) * 100000).toFixed(2);
         this.population = this.countriesDataService.getPopulationByCode(countries[i].CountryCode);
-        countries[i][data] = this.population === '' ? '0.00' : ((total / this.population) * 100000).toFixed(2);
+        countries[i][newData] = this.population === '' ? '0.00' : dataPer100k;
       }
     }
     countries.sort((start, end) => end[data] - start[data]);
