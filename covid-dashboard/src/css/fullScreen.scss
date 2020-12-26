@@ -11,16 +11,16 @@
       cursor: pointer;
       background-color: style.$text_field_color_hover;
     }
-    &__image{
-      width: 2rem;
-      height: 2rem;
-    }
   }
-}
-.parent__full{
-  position: absolute;
-  width: calc(100% - 3rem);
-  height: calc(100vh - 23.5rem);
-  z-index: 999;
-  background-color: style.$field_color;
+  &__image{
+    width: 2rem;
+    height: 2rem;
+  }
+  &__element{
+    position: absolute;
+    width: calc(100% - 3rem);
+    height: calc(100vh - 23.5rem);
+    z-index: 2;
+    background-color: style.$field_color;
+  }
 }

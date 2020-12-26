@@ -22,6 +22,6 @@ export default class FullScreenButton {
   }
 
   pressFullScreenButton() {
-    this.parentNode.classList.toggle('parent__full');
+    this.parentNode.classList.toggle('full-screen__element');
   }
 }
