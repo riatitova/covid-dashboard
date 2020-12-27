@@ -18,9 +18,9 @@
   }
   &__element{
     position: absolute;
-    width: calc(100% - 3rem);
-    height: calc(100vh - 23.5rem);
-    z-index: 2;
+    width: calc(100% - 4rem);
+    height: calc(100% - 23.5rem);
+    z-index: 3;
     background-color: style.$field_color;
   }
 }

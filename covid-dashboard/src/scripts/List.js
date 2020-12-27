@@ -24,7 +24,7 @@ export default class List {
 
   renderList() {
     this.list = createDOMElement(this.countriesList);
-    const fullScreenButton = new FullScreenButton(this.list, 'list');
+    const fullScreenButton = new FullScreenButton(this.list);
     fullScreenButton.createFullScreenButton();
 
     this.searchCountry = {

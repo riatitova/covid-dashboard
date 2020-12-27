@@ -2,6 +2,7 @@ import L from 'leaflet';
 import WorldData from 'world-map-geojson';
 import createDOMElement from './createDOMElement';
 import 'leaflet/dist/leaflet.css';
+import FullScreenButton from './FullScreenButton';
 
 const tooMuchCasesColor = '#f03b20';
 const middleCasesColor = '#feb24c';
@@ -26,10 +27,13 @@ export default class Map {
     };
     this.covidDataService = covidData;
     this.style = this.style.bind(this);
+    this.parentNode = parentNode;
   }
 
   renderMap() {
     this.mapbox = createDOMElement(this.mapbox);
+    const fullScreenButton = new FullScreenButton(this.mapbox);
+    fullScreenButton.createFullScreenButton();
     this.map = L.map(this.mapbox).addLayer(this.mapboxTiles).setView([0, 0], 1.5);
 
     L.geoJSON(WorldData).addTo(this.map);

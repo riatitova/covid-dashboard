@@ -1,5 +1,6 @@
 import createDOMElement from './createDOMElement';
 import '../css/globalCases.scss';
+import FullScreenButton from './FullScreenButton';
 
 export default class GlobalData {
   constructor(covidResponse, parentNode) {
@@ -10,10 +11,13 @@ export default class GlobalData {
       children: 'Global cases',
       parent: parentNode,
     };
+    this.parentNode = parentNode;
   }
 
   renderGlobalData(response) {
     this.globalCases = createDOMElement(this.globalCases);
+    const fullScreenButton = new FullScreenButton(this.globalCases);
+    fullScreenButton.createFullScreenButton();
     this.currentCases = response;
     const cases = {
       elementName: 'span',
