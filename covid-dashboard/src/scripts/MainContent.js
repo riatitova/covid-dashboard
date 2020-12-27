@@ -7,6 +7,7 @@ import Footer from './footer/footer';
 import Map from './Map';
 import Table from './Table';
 import '../css/mainContent.scss';
+import FullScreenButton from './FullScreenButton';
 
 export default class MainContent {
   constructor(countriesData, covidData) {
@@ -44,7 +45,6 @@ export default class MainContent {
     map.renderMap();
 
     this.createWrapper();
-    // this.createTable();
     const table = new Table(this.wrapperElement);
     table.renderTable();
     this.createChart();
@@ -85,17 +85,12 @@ export default class MainContent {
     this.wrapperElement = createDOMElement(this.wrapper);
   }
 
-  createTable() {
-    this.table = {
-      elementName: 'div', classNames: 'page-content__table', parent: this.wrapperElement,
-    };
-    this.tableElement = createDOMElement(this.table);
-  }
-
   createChart() {
     this.chart = {
       elementName: 'div', classNames: 'page-content__chart', parent: this.wrapperElement,
     };
     this.chartElement = createDOMElement(this.chart);
+    const fullScreenButton = new FullScreenButton(this.chartElement);
+    fullScreenButton.createFullScreenButton();
   }
 }
