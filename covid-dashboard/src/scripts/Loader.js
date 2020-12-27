@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 export default class Loader {
   constructor() {
     this.serverCovidData = 'https://api.covid19api.com/summary';
-    this.serverCountryData = 'https://restcountries.eu/rest/v2/all?fields=name;population;flag';
+    this.serverCountryData = 'https://restcountries.eu/rest/v2/all?fields=name;population;flag;alpha2Code';
   }
 
   getCovidData() {
