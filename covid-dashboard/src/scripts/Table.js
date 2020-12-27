@@ -2,6 +2,7 @@ import createDOMElement from './createDOMElement';
 import '../css/table.scss';
 import FullScreenButton from './FullScreenButton';
 
+
 export default class Table {
   constructor(parentNode) {
     this.wrapperElement = parentNode;
@@ -18,5 +19,6 @@ export default class Table {
     this.tableElement = createDOMElement(this.table);
     const fullScreenButton = new FullScreenButton(this.tableElement);
     fullScreenButton.createFullScreenButton();
+
   }
 }

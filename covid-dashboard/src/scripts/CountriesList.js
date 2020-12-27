@@ -23,6 +23,7 @@ export default class CountryLists {
         this.population = this.countriesDataService.getPopulationByCode(countries[i].CountryCode);
         const dataPer100k = ((total / this.population) * 100000).toFixed(2);
         countries[i][data] = this.population === '' ? '0.00' : dataPer100k;
+
       }
     }
     countries.sort((start, end) => end[data] - start[data]);
