@@ -8,10 +8,8 @@ export default class GlobalData {
     this.globalCases = {
       elementName: 'div',
       classNames: 'globalCases',
-      children: 'Global cases',
       parent: parentNode,
     };
-    this.parentNode = parentNode;
   }
 
   renderGlobalData(response) {
@@ -19,13 +17,24 @@ export default class GlobalData {
     const fullScreenButton = new FullScreenButton(this.globalCases);
     fullScreenButton.createFullScreenButton();
     this.currentCases = response;
-    const cases = {
+    const wrapperGlobalData = {
       elementName: 'span',
-      classNames: 'globalCases__amount',
-      children: `${this.currentCases}`,
+      classNames: 'globalCases__wrapper',
+      children: 'Global cases',
       parent: this.globalCases,
     };
-    this.amountOfCases = createDOMElement(cases);
+    this.wrapperGlobalDataElement = createDOMElement(wrapperGlobalData);
+    this.createGlobalData(`${this.currentCases}`);
+  }
+
+  createGlobalData(currentCases) {
+    this.globalData = {
+      elementName: 'div',
+      classNames: 'globalCases__data',
+      children: currentCases,
+      parent: this.wrapperGlobalDataElement,
+    };
+    this.globalDataElement = createDOMElement(this.globalData);
   }
 
   getGlobalData() {

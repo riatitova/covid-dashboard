@@ -5,14 +5,16 @@
     margin: 1rem;
     border: solid 0.1rem style.$border_color;
     font-size: 2.4rem;
-    font-family: 'mainFont';
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    font-family: 'mainFont';    
     background-color: style.$field_color;
-    color: style.$font_color;
-    &__amount {
+    &__wrapper {
+        color: style.$font_color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__data {
         font-size: 3.6rem;
         color: style.$covid_color;
     }
