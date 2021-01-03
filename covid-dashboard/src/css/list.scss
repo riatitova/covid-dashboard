@@ -1,0 +1,68 @@
+@use 'style';
+
+.list{
+    background-color: style.$field_color;
+    margin: 1rem;
+    border: solid 0.1rem style.$border_color;
+    border-radius: 0.7rem;
+    overflow: hidden;
+    height: calc(100vh - 38.5rem);
+    &__search{
+        height: 2.5rem;
+        width: calc(100% - 5rem);
+        margin: 1rem;
+        padding-left: 1rem;
+        font-size: 1.5rem;
+    }   
+}
+.countries-list{
+    height: calc(100vh - 30rem);
+    overflow: scroll;
+    margin: 1rem;
+    &__row{
+        display: flex;
+        justify-content: space-between;
+        background-color: style.$text_field_color;
+        margin: 0.5rem 0;
+        height: 4.2rem;
+        align-items: center;
+        font-size: 2rem;
+        padding: 0 1rem;
+        transition: background-color 0.2s;
+        &_hidden{
+            display: none;
+        }
+        &:hover{
+            cursor: pointer;
+            background-color: style.$text_field_color_hover;
+        }
+    }
+
+    &__cases{
+        color: style.$font_color;
+    }
+    &__deaths{
+        color: style.$covid_color;
+    }
+    &__recovered{
+        color: style.$recovered_color;
+    }
+    &__name{
+        color: style.$font_color;
+    }
+    &__flag{
+        width: 3rem;
+        height: 2rem;
+    }
+    &__wrapper-country{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    &__wrapper-cases{
+        display: flex;
+        gap: 2rem;
+        color: style.$font_color;
+    }
+}
+    

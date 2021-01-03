@@ -1,0 +1,8 @@
+@use 'style';
+
+.footer {
+  width: 100%;
+  background-color: style.$header_color;
+  padding: 0.9rem 16rem 0.5rem;
+  box-sizing: border-box;
+}
